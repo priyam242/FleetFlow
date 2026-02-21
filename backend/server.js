@@ -10,6 +10,7 @@ const maintenanceRoutes = require('./routes/maintenance');
 const fuelRoutes = require('./routes/fuel');
 const expenseRoutes = require('./routes/expenses');
 const analyticsRoutes = require('./routes/analytics');
+const usersRoutes = require('./routes/users');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.use('/api/maintenance', maintenanceRoutes);
 app.use('/api/fuel', fuelRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/users', usersRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 

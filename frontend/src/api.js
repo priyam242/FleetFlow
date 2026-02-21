@@ -24,6 +24,14 @@ export function createApi(getToken) {
           body: JSON.stringify({ email }),
         }).then((r) => r.json()),
     },
+    users: {
+      create: (data) =>
+        fetch(`${API}/users`, {
+          method: 'POST',
+          headers: getHeaders(getToken),
+          body: JSON.stringify(data),
+        }).then((r) => r.json()),
+    },
     dashboard: () =>
       fetch(`${API}/analytics/dashboard`, { headers: getHeaders(getToken) }).then((r) => r.json()),
     vehicles: {

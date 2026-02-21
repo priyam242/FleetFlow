@@ -9,6 +9,7 @@ import FuelExpense from './pages/FuelExpense';
 import Drivers from './pages/Drivers';
 import Analytics from './pages/Analytics';
 import Layout from './components/Layout';
+import CreateUser from './pages/CreateUser';
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="maintenance" element={<Maintenance />} />
             <Route path="fuel-expense" element={<FuelExpense />} />
             <Route path="drivers" element={<Drivers />} />
+            <Route path="users/create" element={<CreateUser />} />
             <Route path="analytics" element={<Analytics />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
