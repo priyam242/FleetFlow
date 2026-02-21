@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { createApi } from '../api';
@@ -11,6 +11,12 @@ export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const api = createApi();
+
+  // Redirect already-authenticated users to dashboard
+  const { user } = useAuth();
+  useEffect(() => {
+    if (user) navigate('/');
+  }, [user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,6 +57,10 @@ export default function Login() {
             {forgot ? 'Back to Login' : 'Forgot Password?'}
           </button>
         </form>
+        <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+          <p style={{ marginBottom: '0.5rem', color: '#94a3b8' }}>Don't have an account?</p>
+          <Link to="/register" className="btn btn-primary">Register as Driver</Link>
+        </div>
       </div>
     </div>
   );

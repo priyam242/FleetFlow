@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { createApi } from '../api';
 
 export default function CreateUser() {
   const { getToken } = useAuth();
   const api = createApi(getToken);
+  const navigate = useNavigate();
   const [form, setForm] = useState({ full_name: '', email: '', password: '', role: 'manager' });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -31,8 +33,10 @@ export default function CreateUser() {
       const res = await api.users.create(payload);
       if (res.error) setError(res.error);
       else {
-        setSuccess('User created successfully');
+        // show temporary password if returned, then redirect to login
+        if (res.tempPassword) alert('User created. Temporary password: ' + res.tempPassword);
         setForm({ full_name: '', email: '', password: '', role: 'manager' });
+        navigate('/login');
       }
     } catch (err) {
       setError(err.message || 'Failed to create user');

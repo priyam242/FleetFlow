@@ -7,7 +7,8 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "db:init": "node scripts/initDb.js",
-    "db:seed": "node scripts/seed.js"
+    "db:seed": "node scripts/seed.js",
+    "db:migrate:add-driver-role": "node scripts/addDriverRole.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
